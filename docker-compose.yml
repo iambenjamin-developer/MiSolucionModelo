@@ -1,19 +1,1 @@
 version: '3.4'
-
-services:
-
-  ms-sql-server:
-    image: mcr.microsoft.com/mssql/server:2019-latest
-    ports:
-      - 1450:1433
-    environment:
-      - SA_PASSWORD=Mypassword*7
-      - ACCEPT_EULA=Y
-
-  miproyecto:
-    image: ${DOCKER_REGISTRY-}miproyecto
-    build:
-      context: .
-      dockerfile: MiProyecto/Dockerfile
-    depends_on:
-        - ms-sql-server
