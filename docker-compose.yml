@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  miproyecto:
+    image: ${DOCKER_REGISTRY-}miproyecto
+    build:
+      context: .
+      dockerfile: MiProyecto/Dockerfile

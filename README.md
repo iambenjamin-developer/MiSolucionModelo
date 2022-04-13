@@ -31,3 +31,5 @@ Run container in background and print container ID
 ===============================================
 
 ```
+docker rmi -f $(docker images -aq)
+```
