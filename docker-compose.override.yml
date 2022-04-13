@@ -2,24 +2,24 @@ version: '3.4'
 
 services:
 
-  ms-sql-server:
+  sqldata:
     image: mcr.microsoft.com/mssql/server:2019-latest
     ports:
       - 1450:1433
     environment:
       - SA_PASSWORD=Mypassword*7
       - ACCEPT_EULA=Y
-    container_name: ms-sql-server
+    container_name: sqldata
 
   miproyecto:
     image: ${DOCKER_REGISTRY-}miproyecto
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - "80"
+      - 5024:5024
     build:
       context: .
       dockerfile: MiProyecto/Dockerfile
     depends_on:
-        - ms-sql-server
+        - sqldata
     container_name: miproyecto
