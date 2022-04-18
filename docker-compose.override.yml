@@ -2,24 +2,14 @@ version: '3.4'
 
 services:
 
-  sqldata:
-    image: mcr.microsoft.com/mssql/server:2019-latest
+  mifrontend:
+    image: mifrontend
     ports:
-      - 1450:1433
-    environment:
-      - SA_PASSWORD=Mypassword*7
-      - ACCEPT_EULA=Y
-    container_name: sqldata
-
-  miproyecto:
-    image: ${DOCKER_REGISTRY-}miproyecto
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    ports:
-      - 5024:5024
+    - 8080:8080
     build:
-      context: .
-      dockerfile: MiProyecto/Dockerfile
+        context: ../TODO-APP/todoapp-frontend/.
+        dockerfile: Dockerfile
+    container_name: mifrontend
     depends_on:
-        - sqldata
-    container_name: miproyecto
+    - sqldata
+    - miproyecto
